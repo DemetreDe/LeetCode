@@ -1,0 +1,28 @@
+//Example string "babad"
+var longestPalindrome = function (s) {
+  let max = [0, 1];
+
+  //Iterates through babad
+  //The loop will treat each char as a potential center of the palindrome
+  for (let i = 0; i < s.length; i++) {
+    let even = expandFromCenter(i - 1, i, s);
+    let odd = expandFromCenter(i - 1, i + 1, s);
+    let curMax = odd[1] - odd[0] > even[1] - even[0] ? odd : even;
+
+    max = max[1] - max[0] > curMax[1] - curMax[0] ? max : curMax;
+  }
+
+  return s.slice(max[0], max[1]);
+};
+
+const expandFromCenter = (left, right, s) => {
+  while (left >= 0 && right < s.length) {
+    if (s[left] != s[right]) break;
+    left--;
+    right++;
+  }
+
+  return [left + 1, right];
+};
+
+console.log(longestPalindrome("ccc"));
