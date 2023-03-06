@@ -1,30 +1,25 @@
-//I DONT KNOW WHAT IM DOING
 var MinStack = function () {
-  return {
-    stack: [],
-    topVal: null,
-    minVal: null,
-  };
+  this.elements = [];
 };
 
 MinStack.prototype.push = function (val) {
-  if (val > this.topval) topVal = val;
-  if (val < this.minVal) minVal = val;
-  this.stack.push(val);
+  this.elements.push(val);
 };
 
-MinStack.prototype.pop = function () {
-  this.stack.pop();
-};
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function () {};
 
-MinStack.prototype.top = function () {
-  return this.topVal;
-};
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function () {};
 
-MinStack.prototype.getMin = function () {
-  return this.minVal;
-};
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function () {};
 
-let minStack = MinStack();
-minStack.prototype.push(1);
-minStack.prototype.push(2);
+var obj = new MinStack();
+obj.push(1);
