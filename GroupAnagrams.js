@@ -1,12 +1,10 @@
 var groupAnagrams = function (strs) {
-  let objMap = {};
-  for (let word of strs) {
-    let anagramInstance = word.split("").sort().join("");
-    objMap[anagramInstance]
-      ? objMap[anagramInstance].push(word)
-      : (objMap[anagramInstance] = [word]);
+  var obj = {};
+  for (var i = 0; i < strs.length; i++) {
+    let anagram = strs[i].split("").sort().join("");
+    obj[anagram] ? obj[anagram].push(strs[i]) : (obj[anagram] = [strs[i]]);
   }
-  return Object.values(objMap);
+  return Object.values;
 };
 
 console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));

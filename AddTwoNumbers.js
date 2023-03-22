@@ -1,45 +1,36 @@
-var addTwoNumbers = function (l1, l2) {
-  var result = ParseListToBigInt(l1) + ParseListToBigInt(l2);
-  result = reverseString(result.toString());
-  return toListNode(result);
-};
-
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
   this.next = next === undefined ? null : next;
 }
 
-//Create new ListNode
-function toListNode(result) {
-  returnedListNode = null;
-  for (let i = result.length - 1; i != -1; i--) {
-    returnedListNode = {
-      val: BigInt(result[i]),
-      next: returnedListNode,
-    };
-  }
-  return returnedListNode;
-}
+//not mine
+var addTwoNumbers = function (l1, l2) {
+  var List = new ListNode(0);
+  var head = List;
+  var sum = 0;
+  var carry = 0;
 
-//Reverse String
-function reverseString(str, index = 0, reversed = "") {
-  //   console.log(str[index] + reversed);
-  if (index === str.length) {
-    return reversed;
-  }
-  //Recursively Traverse String(Character Array)
-  return reverseString(str, index + 1, str[index] + reversed);
-}
+  while (l1 !== null || l2 !== null || sum > 0) {
+    if (l1 !== null) {
+      sum = sum + l1.val;
+      l1 = l1.next;
+    }
+    if (l2 !== null) {
+      sum = sum + l2.val;
+      l2 = l2.next;
+    }
+    if (sum >= 10) {
+      carry = 1;
+      sum = sum - 10;
+    }
 
-var ParseListToBigInt = function (list) {
-  let reversedString = "";
-
-  //Side-effect: the list order is being reversed because of recursion
-  if (list.next != null) {
-    reversedString += ParseListToBigInt(list.next);
+    head.next = new ListNode(sum);
+    head = head.next;
+    sum = carry;
+    carry = 0;
   }
-  reversedString += list.val;
-  return BigInt(reversedString);
+
+  return List.next;
 };
 
 const node1 = new ListNode(2);

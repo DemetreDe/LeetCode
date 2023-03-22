@@ -1,13 +1,10 @@
 var twoSum = function (nums, target) {
-  for (i = 0; i < nums.length; i++) {
-    if (
-      nums.includes(target - nums[i]) &&
-      nums.indexOf(target - nums[i]) != i
-    ) {
-      return [i, nums.indexOf(target - nums[i])];
-    }
+  var map = new Map();
+  for (var i = 0; i < nums.length; i++) {
+    let req = target - nums[i];
+    if (map.has(req)) return [i, map.get(req)];
+    map.set(nums[i], i);
   }
 };
 
-console.log(twoSum([-3, 4, 3, 90], 0));
-//Learn hash maps to reduce time complexity
+console.log(twoSum([2, 7, 11, 15], 9));
